@@ -238,6 +238,10 @@ Protected Class Search
 		  
 		  Var results() As WikipediaKit.SearchResult
 		  
+		  // Ensure we don't go over the request limit.
+		  If limit <= 0 Then limit = 1
+		  limit = Min(limit, MAX_LIMIT)
+		  
 		  // Build the URL with the required parameters.
 		  Var url As String = BASE_URL + "/search/page"
 		  url = url + "?q=" + EncodeURLComponent(query)
@@ -346,7 +350,7 @@ Protected Class Search
 	#tag Constant, Name = DEFAULT_USER_AGENT, Type = String, Dynamic = False, Default = \"XojoWikipediaKit", Scope = Public
 	#tag EndConstant
 
-	#tag Constant, Name = MAX_RESULTS_LIMIT, Type = , Dynamic = False, Default = \"", Scope = Public
+	#tag Constant, Name = MAX_LIMIT, Type = Double, Dynamic = False, Default = \"100", Scope = Public, Description = 546865206D6178696D756D206C696D697420617320646566696E656420627920746865204150492E
 	#tag EndConstant
 
 
