@@ -4,12 +4,12 @@ A Xojo module that allows you to query the free, public, Wikipedia API to retrie
 
 ## Usage
 
-The bulk of the work is done by the `WikipediaKit.Search` class. It performs synchronous queries to the Wikipedia API. This is a free API that doesn't require an API token. You should supply your own user agent string with each request (the API requires this).
+The bulk of the work is done by the `WikipediaKit.SearchEngine` class. It performs synchronous queries to the Wikipedia API. This is a free API that doesn't require an API token. You should supply your own user agent string with each request (the API requires this).
 
 The class can either run a search query and return the HTML contents of the page that is the best match to the query string (determined by the API) or it can return an array of search results ordered by closest match (lowest array index is the best match).
 
 ```xojo
-Var engine As New WikipediaKit.Search("MySearcher")
+Var engine As New WikipediaKit.SearchEngine("MySearcher")
 
 // Let's search for "Jupiter".
 Var query As String = "Jupiter"
@@ -31,4 +31,4 @@ bestMatch = engine.FindBestMatch(query)
 Var contents As String = engine.GetPageHTML(bestMatch.Key)
 ```
 
-Be aware that the `Search` class make synchronous requests so this is a blocking activity.
+Be aware that the `SearchEngine` class make synchronous requests so this is a blocking activity.

@@ -1,5 +1,5 @@
 #tag Class
-Protected Class Search
+Protected Class SearchEngine
 	#tag Method, Flags = &h21, Description = 43616C63756C61746573206120637573746F6D2072656C6576616E63652073636F726520666F7220612073656172636820706167652E204869676865722073636F7265203D20626574746572206D617463682E
 		Private Function CalculateRelevanceScore(query As String, result As WikipediaKit.SearchResult) As Double
 		  /// Calculates a custom relevance score for a search page.

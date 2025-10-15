@@ -233,6 +233,7 @@ Begin DesktopWindow Window1
       Top             =   52
       Transparent     =   False
       Underline       =   False
+      Value           =   False
       Visible         =   True
       VisualState     =   1
       Width           =   63
@@ -303,6 +304,7 @@ Begin DesktopWindow Window1
       Top             =   52
       Transparent     =   False
       Underline       =   False
+      Value           =   False
       Visible         =   True
       VisualState     =   1
       Width           =   139
@@ -332,6 +334,7 @@ Begin DesktopWindow Window1
       Top             =   52
       Transparent     =   False
       Underline       =   False
+      Value           =   False
       Visible         =   True
       VisualState     =   1
       Width           =   201
@@ -392,6 +395,7 @@ Begin DesktopWindow Window1
       Top             =   52
       Transparent     =   False
       Underline       =   False
+      Value           =   False
       Visible         =   True
       VisualState     =   1
       Width           =   137
@@ -407,16 +411,16 @@ End
 		Sub Pressed()
 		  ResultsField.Text = ""
 		  
-		  Var searcher As New WikipediaKit.Search
+		  Var engine As New WikipediaKit.SearchEngine
 		  
 		  Var results() As WikipediaKit.SearchResult
 		  
 		  If BestMatchOnly.Value Then
 		    Var match As WikipediaKit.SearchResult = _
-		    searcher.FindBestMatch(Query.Text, PreferExactTitle.Value, SkipDisambiguation.Value)
+		    engine.FindBestMatch(Query.Text, PreferExactTitle.Value, SkipDisambiguation.Value)
 		    If match <> Nil Then results.Add(match)
 		  Else
-		    results = searcher.Search(Query.Text, LimitCount.Text.ToInteger)
+		    results = engine.Search(Query.Text, LimitCount.Text.ToInteger)
 		  End If
 		  
 		  Var output() As String
@@ -436,22 +440,18 @@ End
 		End Sub
 	#tag EndEvent
 #tag EndEvents
-#tag Events SkipDisambiguation
-#tag EndEvents
 #tag Events ButtonSearchAndGetHTML
 	#tag Event
 		Sub Pressed()
 		  ResultsField.Text = ""
 		  
-		  Var searcher As New WikipediaKit.Search
+		  Var searcher As New WikipediaKit.SearchEngine
 		  
 		  // We only return the best match so we'll ignore the checkbox.
 		  ResultsField.Text = searcher.SearchAndGetPageHTMLContent(Query.Text)
 		  
 		End Sub
 	#tag EndEvent
-#tag EndEvents
-#tag Events BestMatchOnly
 #tag EndEvents
 #tag ViewBehavior
 	#tag ViewProperty
